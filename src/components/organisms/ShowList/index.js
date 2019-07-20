@@ -1,21 +1,35 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
+import ItemList from './../../molecules/ItemList';
 
 export default class ShowList extends Component {
+
+    // state = {
+    //     list: []
+    // }
+
+
     render(){
+
+        const list = this.props.list.map((item) => {
+
+            return (
+                <ItemList 
+                key={item.id} 
+                id={item.id} 
+                todo={item.todo}
+                updateItem={this.props.updateItem}
+                deleteItem = {this.props.deleteItem}/>
+                
+            
+            );
+        })
+
         return(
             <div>
                <ol>
-                   <li>
-                       Buy T-Shirt <button>edit</button><button>delete</button>
-                   </li>
-                   <li>
-                       Buy Redbull <button>edit</button><button>delete</button>
-                   </li>
-                   <li>
-                       Do Laundry <button>edit</button><button>delete</button>
-                   </li>
-                
-
+                   {list}
                </ol>
             </div>
         )
